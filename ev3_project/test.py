@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import time
-# import requests
+import requests
 from ev3dev2.motor import LargeMotor, OUTPUT_A, OUTPUT_B, SpeedPercent, MoveTank
 from ev3dev2.sensor import INPUT_1
 from ev3dev2.sensor.lego import TouchSensor, InfraredSensor
@@ -36,7 +36,10 @@ def deliver_mail():
     pass
 
 def is_ad():
-    return True
+    res = requests.get('http://192.168.43.160:3000/judge')
+    print(res.status_code)
+    print(data) = res.json()
+    return data['necessary']
 
 while True:
     prox = ir.proximity
